@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,9 +5,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-import { useCart } from "./CartContext";
-import CartIcon from "../component/CartIcon";
 
 const AnimatedCounter = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -30,7 +26,6 @@ const AnimatedCounter = ({ end, duration = 2000 }) => {
 const Dashboard = () => {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const { cartCount } = useCart();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
@@ -60,7 +55,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white relative">
-      <CartIcon />
 
       <section className="py-12 sm:py-16 px-4 md:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
@@ -85,7 +79,6 @@ const Dashboard = () => {
         </div>
       </section>
 
-   
       <section className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 px-4">
         {services.map((s, idx) => (
           <div key={idx} className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
@@ -95,7 +88,6 @@ const Dashboard = () => {
           </div>
         ))}
       </section>
-
 
       <section className="container mx-auto mb-12 px-4">
         <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Our Work</h2>
@@ -129,7 +121,6 @@ const Dashboard = () => {
         </Swiper>
       </section>
 
-      
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="p-6">
@@ -161,4 +152,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
