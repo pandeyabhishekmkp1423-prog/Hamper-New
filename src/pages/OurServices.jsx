@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from "react";
-import API from "../api";
+import React, { useState, useEffect } from "react";
 import { FaTshirt, FaShoePrints, FaBed, FaCouch, FaHandSparkles } from "react-icons/fa";
 
 export default function OurServices() {
   const [servicesData, setServicesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchServices = async () => {
-    setLoading(true);
-    try {
-      const res = await API.get("/services");
-      setServicesData(res.data);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Static services data
+  const staticServices = [
+    { _id: 1, name: "Wash & Fold", description: "Professional washing & careful folding", price: 50 },
+    { _id: 2, name: "Dry Cleaning", description: "Expert dry cleaning for delicate garments", price: 100 },
+    { _id: 3, name: "Ironing", description: "Crisp ironing for a polished look", price: 30 },
+    { _id: 4, name: "Stain Removal", description: "Specialized treatment for tough stains", price: 80 },
+    { _id: 5, name: "Shoe Cleaning", description: "Thorough cleaning for shoes & sneakers", price: 70 },
+    { _id: 6, name: "Curtain Wash", description: "Deep cleaning for curtains & drapes", price: 150 },
+  ];
 
   useEffect(() => {
-    fetchServices();
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setServicesData(staticServices);
+      setLoading(false);
+    }, 500); // half a second for demo
+
+    return () => clearTimeout(timer); // cleanup
   }, []);
 
   const getServiceIcon = (name) => {
@@ -48,11 +53,8 @@ export default function OurServices() {
             className="bg-white p-6 rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-2 flex flex-col items-center text-center"
           >
             <div className="mb-4">{getServiceIcon(item.name)}</div>
-
             <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-            
             <p className="text-gray-600 mb-2">{item.description}</p>
-
             <p className="font-bold text-blue-600 text-lg">₹{item.price}</p>
           </div>
         ))}
