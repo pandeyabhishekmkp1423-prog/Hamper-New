@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -6,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import LoadingSpinner from "./component/LoadingSpinner";
+import LaundryAssistant from "./component/LaundryAssistant"; // ✅ NEW
 
 // Pages
 import Dashboard from "./pages/Dashboard";
@@ -21,6 +21,10 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+
+      {/* ✅ AI-style Assistant available on all pages */}
+      <LaundryAssistant />
+
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -43,6 +47,7 @@ function App() {
           />
         </Routes>
       </Suspense>
+
       <Footer />
     </BrowserRouter>
   );
